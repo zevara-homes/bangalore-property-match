@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Bangalore Property Platform Design System - Dual Mode Theme */
 
 @layer base {
   :root {
@@ -17,9 +15,30 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
+    /* Dual-mode color system */
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
 
+    /* Buyer Mode Colors (Blue Theme) */
+    --buyer-primary: 217 100% 50%;
+    --buyer-primary-light: 217 100% 60%;
+    --buyer-secondary: 217 100% 95%;
+    --buyer-accent: 217 76% 47%;
+    --buyer-gradient: linear-gradient(135deg, hsl(217 100% 50%), hsl(217 76% 47%));
+
+    /* Seller Mode Colors (Green Theme) */
+    --seller-primary: 142 76% 36%;
+    --seller-primary-light: 142 69% 58%;
+    --seller-secondary: 142 76% 95%;
+    --seller-accent: 142 76% 36%;
+    --seller-gradient: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 69% 58%));
+
+    /* AI Matching Zone (Purple Theme) */
+    --ai-primary: 262 83% 58%;
+    --ai-secondary: 262 100% 95%;
+    --ai-gradient: linear-gradient(135deg, hsl(262 83% 58%), hsl(217 100% 50%));
+
+    /* Neutral Design Tokens */
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
@@ -35,6 +54,16 @@ All colors MUST be HSL.
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
+
+    /* Beautiful shadows and effects */
+    --shadow-buyer: 0 10px 30px -10px hsl(217 100% 50% / 0.3);
+    --shadow-seller: 0 10px 30px -10px hsl(142 76% 36% / 0.3);
+    --shadow-ai: 0 10px 30px -10px hsl(262 83% 58% / 0.3);
+    --shadow-elegant: 0 4px 20px -4px hsl(222.2 84% 4.9% / 0.1);
+
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
@@ -101,5 +130,84 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Custom animations for dual-mode interactions */
+@layer utilities {
+  .animate-mode-switch {
+    transition: var(--transition-smooth);
+  }
+
+  .animate-toggle-slide {
+    transition: var(--transition-bounce);
+  }
+
+  .animate-counter {
+    animation: counter-up 1s ease-out forwards;
+  }
+
+  .animate-pulse-gentle {
+    animation: pulse-gentle 2s infinite;
+  }
+
+  .buyer-theme {
+    --theme-primary: var(--buyer-primary);
+    --theme-gradient: var(--buyer-gradient);
+    --theme-shadow: var(--shadow-buyer);
+  }
+
+  .seller-theme {
+    --theme-primary: var(--seller-primary);
+    --theme-gradient: var(--seller-gradient);
+    --theme-shadow: var(--shadow-seller);
+  }
+
+  .ai-theme {
+    --theme-primary: var(--ai-primary);
+    --theme-gradient: var(--ai-gradient);
+    --theme-shadow: var(--shadow-ai);
+  }
+}
+
+@keyframes counter-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

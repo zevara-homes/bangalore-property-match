@@ -52,6 +52,23 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Dual-mode theme colors
+				buyer: {
+					primary: 'hsl(var(--buyer-primary))',
+					'primary-light': 'hsl(var(--buyer-primary-light))',
+					secondary: 'hsl(var(--buyer-secondary))',
+					accent: 'hsl(var(--buyer-accent))'
+				},
+				seller: {
+					primary: 'hsl(var(--seller-primary))',
+					'primary-light': 'hsl(var(--seller-primary-light))',
+					secondary: 'hsl(var(--seller-secondary))',
+					accent: 'hsl(var(--seller-accent))'
+				},
+				ai: {
+					primary: 'hsl(var(--ai-primary))',
+					secondary: 'hsl(var(--ai-secondary))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,6 +79,21 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'buyer-gradient': 'var(--buyer-gradient)',
+				'seller-gradient': 'var(--seller-gradient)',
+				'ai-gradient': 'var(--ai-gradient)'
+			},
+			boxShadow: {
+				'buyer': 'var(--shadow-buyer)',
+				'seller': 'var(--shadow-seller)',
+				'ai': 'var(--shadow-ai)',
+				'elegant': 'var(--shadow-elegant)'
+			},
+			transitionTimingFunction: {
+				'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+				'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

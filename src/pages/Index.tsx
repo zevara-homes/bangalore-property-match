@@ -1,12 +1,29 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
+import { HeroSection } from "@/components/HeroSection";
+import { SuccessStories } from "@/components/SuccessStories";
+import { HowItWorks } from "@/components/HowItWorks";
+import { MarketPulse } from "@/components/MarketPulse";
+import { ConversionFooter } from "@/components/ConversionFooter";
 
 const Index = () => {
+  const [userMode, setUserMode] = useState<'buy' | 'sell'>('buy');
+  const [hasToggled, setHasToggled] = useState(false);
+
+  useEffect(() => {
+    // Track if user has toggled between modes
+    const originalMode = sessionStorage.getItem('preferredMode') || 'buy';
+    if (userMode !== originalMode) {
+      setHasToggled(true);
+    }
+  }, [userMode]);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <HeroSection />
+      <MarketPulse />
+      <SuccessStories />
+      <HowItWorks />
+      <ConversionFooter userMode={userMode} hasToggled={hasToggled} />
     </div>
   );
 };
