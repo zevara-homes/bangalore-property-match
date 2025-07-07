@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { ModeToggle } from "./ModeToggle";
 import { SearchWidget } from "./SearchWidget";
 import { TrustSignals } from "./TrustSignals";
+import { PropertyMatchModal } from "./PropertyMatchModal";
 import heroImage from "@/assets/hero-image.jpg";
 
 export const HeroSection = () => {
   const [mode, setMode] = useState<'buy' | 'sell'>('buy');
+  const [showMatchModal, setShowMatchModal] = useState(false);
   
   // Save mode preference
   useEffect(() => {
@@ -52,7 +54,7 @@ export const HeroSection = () => {
             </div>
             
             {/* Search Widget */}
-            <SearchWidget mode={mode} />
+            <SearchWidget mode={mode} onGetMatches={() => setShowMatchModal(true)} />
             
             {/* Primary CTA */}
             <button 
@@ -65,8 +67,8 @@ export const HeroSection = () => {
                 }
               `}
               onClick={() => {
-                // Track conversion by mode - will be added with analytics
                 console.log('CTA clicked:', { mode, cta });
+                setShowMatchModal(true);
               }}
             >
               {cta}
@@ -118,6 +120,13 @@ export const HeroSection = () => {
         {/* Trust Signals */}
         <TrustSignals mode={mode} />
       </div>
+      
+      {/* Property Match Modal */}
+      <PropertyMatchModal 
+        isOpen={showMatchModal}
+        onClose={() => setShowMatchModal(false)}
+        mode={mode}
+      />
     </section>
   );
 };

@@ -53,11 +53,11 @@ export const HowItWorks = () => {
 
         <div className="max-w-6xl mx-auto">
           {/* Interactive Timeline */}
-          <div className="relative">
+          <div className="relative min-h-[600px] lg:min-h-[500px]">
             {/* Central AI Hub */}
             <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="w-24 h-24 rounded-full bg-ai-gradient flex items-center justify-center shadow-ai">
-                <div className="text-2xl">🧠</div>
+              <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-ai-gradient flex items-center justify-center shadow-ai">
+                <div className="text-xl lg:text-2xl">🧠</div>
               </div>
               <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm font-semibold text-ai-primary whitespace-nowrap">
                 AI Matching
@@ -67,30 +67,30 @@ export const HowItWorks = () => {
             {/* Buyer Path (Top) */}
             <div 
               className={`
-                relative transition-all duration-300 transform
+                absolute top-0 left-0 right-0 transition-all duration-300 transform
                 ${hoveredPath === 'buyer' ? 'scale-105' : hoveredPath === 'seller' ? 'scale-95 opacity-50' : ''}
               `}
               onMouseEnter={() => setHoveredPath('buyer')}
               onMouseLeave={() => setHoveredPath(null)}
             >
-              <div className="flex justify-center mb-8">
+              <div className="flex justify-center mb-6">
                 <div className="bg-buyer-secondary rounded-full px-6 py-2 border border-buyer-primary/20">
                   <span className="text-buyer-primary font-semibold">For Buyers</span>
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 pb-20">
                 {buyerSteps.map((step, index) => (
-                  <div key={index} className="text-center">
+                  <div key={index} className="text-center bg-white rounded-xl p-6 border border-border shadow-lg">
                     <div className="relative">
-                      <div className="w-16 h-16 mx-auto rounded-full bg-buyer-gradient flex items-center justify-center text-2xl shadow-buyer mb-4">
+                      <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto rounded-full bg-buyer-gradient flex items-center justify-center text-xl lg:text-2xl shadow-buyer mb-4">
                         {step.icon}
                       </div>
                       {index < buyerSteps.length - 1 && (
-                        <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-buyer-primary/30" />
+                        <div className="hidden md:block absolute top-6 lg:top-8 left-full w-full h-0.5 bg-buyer-primary/30" />
                       )}
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 text-buyer-primary">
+                    <h3 className="text-base lg:text-lg font-semibold mb-2 text-buyer-primary">
                       {step.title}
                     </h3>
                     <p className="text-sm text-muted-foreground">
@@ -101,39 +101,39 @@ export const HowItWorks = () => {
               </div>
 
               {/* Buyer to AI connection line */}
-              <div className="absolute bottom-0 left-1/2 w-0.5 h-16 bg-buyer-primary/50 transform -translate-x-1/2" />
+              <div className="absolute bottom-0 left-1/2 w-0.5 h-12 lg:h-16 bg-buyer-primary/50 transform -translate-x-1/2" />
             </div>
 
             {/* Seller Path (Bottom) */}
             <div 
               className={`
-                relative transition-all duration-300 transform
+                absolute bottom-0 left-0 right-0 transition-all duration-300 transform
                 ${hoveredPath === 'seller' ? 'scale-105' : hoveredPath === 'buyer' ? 'scale-95 opacity-50' : ''}
               `}
               onMouseEnter={() => setHoveredPath('seller')}
               onMouseLeave={() => setHoveredPath(null)}
             >
               {/* Seller from AI connection line */}
-              <div className="absolute top-0 left-1/2 w-0.5 h-16 bg-seller-primary/50 transform -translate-x-1/2" />
+              <div className="absolute top-0 left-1/2 w-0.5 h-12 lg:h-16 bg-seller-primary/50 transform -translate-x-1/2" />
               
-              <div className="flex justify-center mt-16 mb-8">
+              <div className="flex justify-center pt-20 mb-6">
                 <div className="bg-seller-secondary rounded-full px-6 py-2 border border-seller-primary/20">
                   <span className="text-seller-primary font-semibold">For Sellers</span>
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                 {sellerSteps.map((step, index) => (
-                  <div key={index} className="text-center">
+                  <div key={index} className="text-center bg-white rounded-xl p-6 border border-border shadow-lg">
                     <div className="relative">
-                      <div className="w-16 h-16 mx-auto rounded-full bg-seller-gradient flex items-center justify-center text-2xl shadow-seller mb-4">
+                      <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto rounded-full bg-seller-gradient flex items-center justify-center text-xl lg:text-2xl shadow-seller mb-4">
                         {step.icon}
                       </div>
                       {index < sellerSteps.length - 1 && (
-                        <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-seller-primary/30" />
+                        <div className="hidden md:block absolute top-6 lg:top-8 left-full w-full h-0.5 bg-seller-primary/30" />
                       )}
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 text-seller-primary">
+                    <h3 className="text-base lg:text-lg font-semibold mb-2 text-seller-primary">
                       {step.title}
                     </h3>
                     <p className="text-sm text-muted-foreground">

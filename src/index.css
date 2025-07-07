@@ -211,3 +211,12 @@
     opacity: 1;
   }
 }
+
+/* Additional animations for dynamic content */
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}

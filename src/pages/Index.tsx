@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { HeroSection } from "@/components/HeroSection";
 import { SuccessStories } from "@/components/SuccessStories";
 import { HowItWorks } from "@/components/HowItWorks";
-import { MarketPulse } from "@/components/MarketPulse";
+import { DynamicMarketPulse } from "@/components/DynamicMarketPulse";
 import { ConversionFooter } from "@/components/ConversionFooter";
 
 const Index = () => {
@@ -20,7 +20,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <HeroSection />
-      <MarketPulse />
+      <DynamicMarketPulse />
       <SuccessStories />
       <HowItWorks />
       <ConversionFooter userMode={userMode} hasToggled={hasToggled} />

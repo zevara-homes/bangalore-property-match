@@ -33,9 +33,12 @@ export const ConversionFooter = ({ userMode, hasToggled }: ConversionFooterProps
 
   // Exit intent detection
   useEffect(() => {
+    const hasSeenExitPopup = sessionStorage.getItem('hasSeenExitPopup');
+    
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
+      if (e.clientY <= 0 && !hasSeenExitPopup) {
         setShowExitIntent(true);
+        sessionStorage.setItem('hasSeenExitPopup', 'true');
       }
     };
 
@@ -142,10 +145,16 @@ export const ConversionFooter = ({ userMode, hasToggled }: ConversionFooterProps
               <h3 className="text-2xl font-bold">{exitContent.title}</h3>
               <p className="text-muted-foreground">{exitContent.subtitle}</p>
               <div className="space-y-3">
-                <button className={`
-                  w-full py-3 text-white font-semibold rounded-lg transition-colors
-                  ${userMode === 'buy' ? 'bg-buyer-primary hover:bg-buyer-accent' : 'bg-seller-primary hover:bg-seller-accent'}
-                `}>
+                <button 
+                  onClick={() => {
+                    alert("You're on the list! We'll contact you soon with exclusive offers.");
+                    setShowExitIntent(false);
+                  }}
+                  className={`
+                    w-full py-3 text-white font-semibold rounded-lg transition-colors
+                    ${userMode === 'buy' ? 'bg-buyer-primary hover:bg-buyer-accent' : 'bg-seller-primary hover:bg-seller-accent'}
+                  `}
+                >
                   {exitContent.cta}
                 </button>
                 <button 

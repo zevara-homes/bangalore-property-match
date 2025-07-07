@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 
 interface SearchWidgetProps {
   mode: 'buy' | 'sell';
+  onGetMatches?: () => void;
 }
 
 type StepType = {
@@ -15,7 +16,7 @@ type StepType = {
   placeholder?: string;
 };
 
-export const SearchWidget = ({ mode }: SearchWidgetProps) => {
+export const SearchWidget = ({ mode, onGetMatches }: SearchWidgetProps) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     location: '',
@@ -119,8 +120,13 @@ export const SearchWidget = ({ mode }: SearchWidgetProps) => {
                 value={formData.budget}
                 onChange={(e) => setFormData({...formData, budget: parseInt(e.target.value)})}
                 className={`
-                  w-full h-2 rounded-lg appearance-none cursor-pointer
-                  ${mode === 'buy' ? 'range-buyer' : 'range-seller'}
+                  w-full h-3 rounded-lg appearance-none cursor-pointer bg-muted
+                  [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 
+                  [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white
+                  ${mode === 'buy' 
+                    ? '[&::-webkit-slider-thumb]:bg-buyer-primary [&::-webkit-slider-track]:bg-buyer-primary/20' 
+                    : '[&::-webkit-slider-thumb]:bg-seller-primary [&::-webkit-slider-track]:bg-seller-primary/20'
+                  }
                 `}
               />
             </div>
@@ -187,6 +193,7 @@ export const SearchWidget = ({ mode }: SearchWidgetProps) => {
             </button>
           ) : (
             <button
+              onClick={onGetMatches}
               className={`
                 px-6 py-2 text-sm font-medium text-white rounded-lg transition-all duration-200
                 ${mode === 'buy' ? 'bg-buyer-primary hover:bg-buyer-accent' : 'bg-seller-primary hover:bg-seller-accent'}
