@@ -64,7 +64,7 @@ export const HowItWorks = () => {
                       <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto rounded-full bg-buyer-gradient flex items-center justify-center text-xl lg:text-2xl shadow-buyer mb-4">
                         {step.icon}
                       </div>
-                      {index < buyerSteps.length - 1 && <div className="hidden md:block absolute top-6 lg:top-8 left-full w-full h-0.5 bg-buyer-primary/30" />}
+                      {index < buyerSteps.length - 1}
                     </div>
                     <h3 className="text-base lg:text-lg font-semibold mb-2 text-buyer-primary">
                       {step.title}
