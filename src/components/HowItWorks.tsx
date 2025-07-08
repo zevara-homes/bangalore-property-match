@@ -43,12 +43,8 @@ export const HowItWorks = () => {
           <div className="relative min-h-[600px] lg:min-h-[500px]">
             {/* Central AI Hub */}
             <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-              <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-ai-gradient flex items-center justify-center shadow-ai my-[10px] py-[10px] px-[10px] max-w-20 ">
-                <div className="text-xl lg:text-2xl">🧠</div>
-              </div>
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm font-semibold text-ai-primary whitespace-nowrap">
-                AI Matching
-              </div>
+              
+              
             </div>
 
             {/* Buyer Path (Top) */}
