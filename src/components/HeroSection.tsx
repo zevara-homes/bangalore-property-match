@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Mic, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { TrustSignals } from "./TrustSignals";
 import { PropertyMatchModal } from "./PropertyMatchModal";
 import heroImage from "@/assets/hero-image.jpg";
@@ -13,6 +14,7 @@ const aiQuestions = [
 ];
 
 export const HeroSection = () => {
+  const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [showMatchModal, setShowMatchModal] = useState(false);
@@ -32,7 +34,21 @@ export const HeroSection = () => {
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      setShowMatchModal(true);
+      navigate(`/chat?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
+  const handleServiceClick = (service: string) => {
+    switch (service) {
+      case 'find':
+        setShowMatchModal(true);
+        break;
+      case 'market':
+        navigate('/chat?context=market');
+        break;
+      case 'verify':
+        navigate('/chat?context=verify');
+        break;
     }
   };
 
@@ -91,19 +107,28 @@ export const HeroSection = () => {
 
         {/* Service Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
-          <button className="group bg-white rounded-xl p-6 border border-blue-200 hover:border-blue-400 transition duration-300 hover:shadow-lg">
+          <button 
+            onClick={() => handleServiceClick('find')}
+            className="group bg-white rounded-xl p-6 border border-blue-200 hover:border-blue-400 transition duration-300 hover:shadow-lg"
+          >
             <div className="text-3xl mb-3">🔍</div>
-            <h3 className="text-lg font-semibold text-slate-700 group-hover:text-blue-600">Find Properties</h3>
-            <p className="text-sm text-slate-500 mt-2">AI-powered property discovery</p>
+            <h3 className="text-lg font-semibold text-slate-700 group-hover:text-blue-600">Find/Sell Properties</h3>
+            <p className="text-sm text-slate-500 mt-2">AI-powered property matching</p>
           </button>
           
-          <button className="group bg-white rounded-xl p-6 border border-blue-200 hover:border-blue-400 transition duration-300 hover:shadow-lg">
+          <button 
+            onClick={() => handleServiceClick('market')}
+            className="group bg-white rounded-xl p-6 border border-blue-200 hover:border-blue-400 transition duration-300 hover:shadow-lg"
+          >
             <div className="text-3xl mb-3">📊</div>
             <h3 className="text-lg font-semibold text-slate-700 group-hover:text-blue-600">Track Markets</h3>
             <p className="text-sm text-slate-500 mt-2">Real-time market intelligence</p>
           </button>
           
-          <button className="group bg-white rounded-xl p-6 border border-blue-200 hover:border-blue-400 transition duration-300 hover:shadow-lg">
+          <button 
+            onClick={() => handleServiceClick('verify')}
+            className="group bg-white rounded-xl p-6 border border-blue-200 hover:border-blue-400 transition duration-300 hover:shadow-lg"
+          >
             <div className="text-3xl mb-3">✓</div>
             <h3 className="text-lg font-semibold text-slate-700 group-hover:text-blue-600">Verify Deals</h3>
             <p className="text-sm text-slate-500 mt-2">Smart deal analysis & validation</p>
