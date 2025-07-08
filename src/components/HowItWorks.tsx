@@ -91,7 +91,7 @@ export const HowItWorks = () => {
               {/* Seller from AI connection line */}
               <div className="absolute top-0 left-1/2 w-0.5 h-12 lg:h-16 bg-seller-primary/50 transform -translate-x-1/2" />
               
-              <div className="flex justify-center pt-20 mb-6">
+              <div className="flex justify-center pt-16 lg:pt-20 mb-6">
                 <div className="bg-seller-secondary rounded-full px-6 py-2 border border-seller-primary/20">
                   <span className="text-seller-primary font-semibold">For Sellers</span>
                 </div>
