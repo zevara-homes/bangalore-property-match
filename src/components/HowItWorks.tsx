@@ -99,7 +99,7 @@ export const HowItWorks = () => {
                       <div className="w-14 h-14 lg:w-16 lg:h-16 mx-auto rounded-full bg-seller-gradient flex items-center justify-center text-xl lg:text-2xl shadow-seller mb-4">
                         {step.icon}
                       </div>
-                      {index < sellerSteps.length - 1 && <div className="hidden md:block absolute top-6 lg:top-8 left-full w-full h-0.5 bg-seller-primary/30" />}
+                      {index < sellerSteps.length - 1}
                     </div>
                     <h3 className="text-base lg:text-lg font-semibold mb-2 text-seller-primary">
                       {step.title}
