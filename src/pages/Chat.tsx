@@ -112,8 +112,8 @@ export const Chat = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
+      {/* Professional Header */}
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center gap-4">
           <button 
             onClick={() => navigate('/')}
@@ -123,10 +123,16 @@ export const Chat = () => {
             <span className="hidden sm:inline">Back to Home</span>
           </button>
           <div className="flex-1">
-            <h1 className="text-xl font-bold text-slate-800">
-              AI<span className="text-blue-600">Broker</span>
-            </h1>
-            <p className="text-sm text-gray-500">Your Real Estate Intelligence Partner</p>
+            <div className="flex items-center gap-3">
+              <h1 className="text-xl font-bold text-slate-800">
+                AI<span className="text-blue-600">Broker</span> <span className="text-sm font-medium bg-blue-100 text-blue-700 px-2 py-1 rounded">Consultant</span>
+              </h1>
+              <div className="flex items-center gap-2 text-sm text-green-600">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                Available for consultation
+              </div>
+            </div>
+            <p className="text-sm text-gray-500">Professional Real Estate Advisory</p>
           </div>
         </div>
       </header>
@@ -155,11 +161,14 @@ export const Chat = () => {
             
             {isTyping && (
               <div className="flex justify-start">
-                <div className="bg-gray-100 rounded-lg p-4 max-w-xs">
-                  <div className="flex gap-1">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '300ms'}}></div>
+                <div className="bg-white border border-gray-200 rounded-lg p-4 max-w-md shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0ms'}}></div>
+                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '150ms'}}></div>
+                      <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '300ms'}}></div>
+                    </div>
+                    <span className="text-blue-600 text-sm font-medium">Your advisor is analyzing the market...</span>
                   </div>
                 </div>
               </div>
@@ -168,28 +177,28 @@ export const Chat = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area */}
-          <div className="border-t border-gray-200 p-4">
-            <div className="flex gap-3">
+          {/* Professional Input Area */}
+          <div className="border-t border-gray-200 p-6 bg-gray-50">
+            <div className="flex gap-4">
               <div className="flex-1 relative">
                 <input
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="Ask a follow-up question..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Describe your real estate needs..."
+                  className="w-full px-6 py-4 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg bg-white shadow-sm"
                   disabled={isTyping}
                 />
-                <Mic className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 cursor-pointer hover:text-blue-600 transition" />
+                <Mic className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400 cursor-pointer hover:text-blue-600 transition" />
               </div>
               <button
                 onClick={handleSendMessage}
                 disabled={!inputValue.trim() || isTyping}
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-2"
+                className="px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-2 font-semibold shadow-sm"
               >
-                <Send className="w-4 h-4" />
-                <span className="hidden sm:inline">Send</span>
+                <Send className="w-5 h-5" />
+                <span className="hidden sm:inline">Get Expert Advice</span>
               </button>
             </div>
           </div>
