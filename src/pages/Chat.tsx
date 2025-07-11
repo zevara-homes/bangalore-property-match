@@ -3,6 +3,7 @@ import { ArrowLeft, Send, Mic } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { ChatMessage } from "@/components/ChatMessage";
 import { conversationData } from "@/data/conversationData";
+import { useUser } from "@/contexts/UserContext";
 
 interface Message {
   role: 'user' | 'ai';
@@ -20,6 +21,7 @@ export const Chat = () => {
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { updateQuestionCount } = useUser();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -95,11 +97,13 @@ export const Chat = () => {
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
     
+    updateQuestionCount(); // Track question for signup trigger
     handleQuestion(inputValue);
     setInputValue("");
   };
 
   const handleFollowUp = (question: string) => {
+    updateQuestionCount(); // Track follow-up question
     handleQuestion(question);
   };
 

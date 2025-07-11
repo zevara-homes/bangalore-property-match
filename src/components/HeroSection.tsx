@@ -3,6 +3,8 @@ import { Mic, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { TrustSignals } from "./TrustSignals";
 import { PropertyMatchModal } from "./PropertyMatchModal";
+import { useUser } from "@/contexts/UserContext";
+import { SignupModal } from "./SignupModal";
 import heroImage from "@/assets/hero-image.jpg";
 
 const aiQuestions = [
@@ -19,6 +21,7 @@ export const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showMatchModal, setShowMatchModal] = useState(false);
   const [isTyping, setIsTyping] = useState(true);
+  const { updateQuestionCount, shouldShowSignup, resetSignupTrigger } = useUser();
 
   // Animate through questions
   useEffect(() => {
@@ -34,6 +37,7 @@ export const HeroSection = () => {
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
+      updateQuestionCount(); // Track question for signup trigger
       navigate(`/chat?q=${encodeURIComponent(searchQuery)}`);
     }
   };
@@ -44,9 +48,11 @@ export const HeroSection = () => {
         setShowMatchModal(true);
         break;
       case 'market':
+        updateQuestionCount(); // Track interaction
         navigate('/chat?context=market');
         break;
       case 'verify':
+        updateQuestionCount(); // Track interaction
         navigate('/chat?context=verify');
         break;
     }
@@ -167,6 +173,12 @@ export const HeroSection = () => {
         isOpen={showMatchModal}
         onClose={() => setShowMatchModal(false)}
         mode="buy"
+      />
+
+      {/* Signup Modal */}
+      <SignupModal 
+        isOpen={shouldShowSignup} 
+        onClose={resetSignupTrigger}
       />
     </section>
   );
