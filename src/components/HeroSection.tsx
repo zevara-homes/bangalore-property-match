@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Mic, Search } from "lucide-react";
+import { Mic, Search, User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { TrustSignals } from "./TrustSignals";
 import { PropertyMatchModal } from "./PropertyMatchModal";
@@ -20,6 +20,7 @@ export const HeroSection = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [showMatchModal, setShowMatchModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
   const [isTyping, setIsTyping] = useState(true);
   const { updateQuestionCount, shouldShowSignup, resetSignupTrigger } = useUser();
 
@@ -60,6 +61,17 @@ export const HeroSection = () => {
 
   return (
     <section className="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* Header with Login Button */}
+      <div className="absolute top-0 right-0 p-6 z-20">
+        <button
+          onClick={() => setShowSignupModal(true)}
+          className="flex items-center gap-2 bg-white hover:bg-blue-50 text-blue-600 px-6 py-3 rounded-xl border border-blue-200 font-semibold transition duration-200 shadow-sm hover:shadow-md"
+        >
+          <User className="w-4 h-4" />
+          Sign Up / Login
+        </button>
+      </div>
+      
       <div className="container mx-auto px-4 pt-20 pb-12 relative z-10">
         {/* AIBroker Brand */}
         <div className="text-center mb-8">
@@ -177,8 +189,11 @@ export const HeroSection = () => {
 
       {/* Signup Modal */}
       <SignupModal 
-        isOpen={shouldShowSignup} 
-        onClose={resetSignupTrigger}
+        isOpen={shouldShowSignup || showSignupModal} 
+        onClose={() => {
+          resetSignupTrigger();
+          setShowSignupModal(false);
+        }}
       />
     </section>
   );
